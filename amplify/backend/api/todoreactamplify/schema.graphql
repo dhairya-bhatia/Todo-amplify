@@ -1,0 +1,14 @@
+type Todo
+  @model
+  @key(
+    name: "sortByDate"
+    fields: ["ownerId", "createdAt"]
+    queryField: "sortByDate"
+  )
+  @auth(rules: [{ allow: owner, operations: [create, update, delete, read] }]) {
+  id: ID!
+  name: String!
+  isCompleted: Boolean!
+  ownerId: String!
+  createdAt: String!
+}
