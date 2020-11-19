@@ -12,6 +12,7 @@ const Todos = () => {
 
     const [todoList, setTodoList] = useState([]);
     const [ownerId, setOwnerId] = useState('');
+    const [ownerUsername, setOwnerUsername] = useState('');
     // eslint-disable-next-line 
     const [AuthState, setAuthState] = useState();
 
@@ -20,6 +21,8 @@ const Todos = () => {
         return onAuthUIStateChange((nextAuthState, authData) => {
             if (nextAuthState === 'signedin') {
                 setOwnerId(authData.attributes.sub);
+                console.log(authData);
+                setOwnerUsername(authData.username);
                 fetchTodoAndSetTodos(authData.attributes.sub);
             }
             setAuthState(nextAuthState);
@@ -92,11 +95,14 @@ const Todos = () => {
 
 
     return (
-        <div className="todo-app-container">
+        <div className="text-center">
             <AmplifySignOut handleAuthStateChange={handleAuthStateChange} slot="sign-out" />
-            <h1 className="title"> My Todo List </h1>
+            <div className="mr-4 text-lg flex flex-col">
+                <h4 className="max-w-max self-end bg-blue-200 p-6 float-right"> Hello, {ownerUsername}</h4>
+                <h1 className="text-5xl text-gray-600 font-mono py-6"> My Todo List </h1>
+            </div>
 
-            <div className="inputBox-container">
+            <div>
                 <form
                     onSubmit={(event) => {
                         event.preventDefault();
@@ -108,28 +114,31 @@ const Todos = () => {
                     <input
                         type="text"
                         placeholder="What needs to be done ?"
-                        className="input-todo"
+                        className="input-todo pl-5 h-16 max-w-xl w-full border-none shadow-md rounded-lg"
                         required
                     />
                 </form>
             </div>
 
-            <div className="todo-list-container">
-                <ul>
+            <div className="mt-1">
+                <ul className="max-w-xl w-full mx-auto shadow-lg">
                     {/* Rendering Todo List   */}
                     {todoList.map((todo, index) => {
                         return (
-                            <li key={index}>
-                                <input
-                                    type="checkbox"
-                                    checked={todo.isCompleted}
-                                    onChange={() => toggleTodo(todo.id, todo.isCompleted)}
-                                />
+                            <li key={index}
+                                className="flex justify-between text-left no-underline text-black bg-white leading-8 border-b-solid border-b-2 border-gray-500 p-4 bg-listBg hover:bg-listHoverBg rounded-lg"
+                            >
+                                <div className="left-content">
+                                    <input
+                                        type="checkbox"
+                                        checked={todo.isCompleted}
+                                        onChange={() => toggleTodo(todo.id, todo.isCompleted)}
+                                    />
 
-                                {todo.name}
-
+                                    <span className="pl-3 text-lg">{todo.name}</span>
+                                </div>
                                 <button
-                                    className="delete-item"
+                                    className="bg-customOrange text-white uppercase no-underline ml-4 px-4 py-1 rounded-lg hover:bg-red-600"
                                     onClick={() => removeTodo(todo.id)}
                                 >
                                     Delete

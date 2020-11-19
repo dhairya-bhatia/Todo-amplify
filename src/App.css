@@ -1,75 +1,15 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #c0c0c0;
-}
-
-.todo-app-container {
-  text-align: center;
-}
-
-.title {
-  padding: 15px;
-  color: #6699ff;
-  font-size: 40px;
-  font-family: fantasy;
-}
-
-.input-todo {
-  height: 50px;
-  width: 360px;
-  border: none;
-  padding: 2px 20px;
-  box-shadow: 2px 7px 7px 5px #808080;
+  background: #f3fff3;
 }
 
 .input-todo::placeholder {
   padding-left: 20px;
-  color: #c0c0c0;
+  color: gray;
 }
 
-.todo-list-container {
-  margin: 20px;
-}
-
-ul {
-  /* remove default padding and margin from ul*/
-  margin: 0px;
-  padding: 0px;
-}
-ul li {
-  display: block;
-  width: 25%;
-  left: 37%;
-  text-align: left;
-  text-decoration: none;
-  color: #000000;
-  background-color: #ffffff;
-  line-height: 30px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: #cccccc;
-  padding: 10px;
-  position: relative;
-}
-
-.delete-item {
-  position: absolute;
-  right: 0%;
-  background: #f34541;
-  color: #fff !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 10px;
-  border-radius: 0.4rem;
-  display: inline-block;
-  border: none;
-}
-
-.filter-btn-container button {
-  padding: 10px;
-  margin: 5px;
-  border: none;
+.left-content {
+  max-height: 45px;
+  overflow-y: scroll;
 }
